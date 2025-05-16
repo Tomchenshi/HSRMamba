@@ -1,0 +1,1 @@
+python main_mamba43.py train --dataset_name 'Chikusei' --batch_size 8 --model_title 'hsrmamba' --n_scale 4 --learning_rate 1e-4 --gpus '0,1,2,3'

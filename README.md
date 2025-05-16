@@ -6,6 +6,7 @@ HSRMamba: Contextual Spatial-Spectral State Space Model for Single Hyperspectral
 * Pytorch 1.13.1
 * Pytorch-cuda 11.7
 * mamba-ssm 1.0.1
+* causal_conv1d 1.0.0
 
 ## Preparation
 To get the training set, validation set and testing set, refer to SSPSR to download the mcodes for cropping the hyperspectral image.

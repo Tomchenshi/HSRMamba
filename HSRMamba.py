@@ -628,7 +628,7 @@ class LSSB(nn.Module):
         x = self.ln_1(input)
         x = input * self.skip_scale + self.drop_path(
             self.self_attention(x) + self.conv_blk(x.permute(0, 3, 1, 2).contiguous()).permute(0, 2, 3, 1).contiguous())
-        x = x * self.skip_scale2 + self.ln_2(self.mlp(x))
+        x = x * self.skip_scale2 + self.mlp(self.ln_2(x))
         x = x.view(B, -1, C).contiguous()
         return x
 
@@ -664,7 +664,7 @@ class GSCB(nn.Module):
         input = input.view(B, *x_size, C).contiguous()  # [B,H,W,C]
         x = self.ln_1(input)
         x = input*self.skip_scale + self.drop_path(self.self_attention(x) + self.conv_blk(x.permute(0, 3, 1, 2).contiguous()).permute(0, 2, 3, 1).contiguous())
-        x = x * self.skip_scale2 + self.ln_2(self.mlp(x))
+        x = x * self.skip_scale2 + self.mlp(self.ln_2(x))
         x = x.view(B, -1, C).contiguous()
         return x
 
@@ -1149,4 +1149,5 @@ class Upsample(nn.Sequential):
         else:
             raise ValueError(f'scale {scale} is not supported. Supported scales: 2^n and 3.')
         super(Upsample, self).__init__(*m)
+
 
